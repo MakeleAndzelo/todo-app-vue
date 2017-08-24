@@ -1,28 +1,29 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
-  </div>
+    <div id="app" class="container">
+        <div class="row">
+            <div class="col s6 offset-s3">
+                <task-list title="My tasks">
+                    <task>Clean home</task>
+                    <task>Wash car</task>
+                    <task>Do homework</task>
+                </task-list>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+    import TaskList from "./components/TaskList.vue";
+    import Task from "./components/Task.vue";
 
-export default {
-  name: 'app',
-  components: {
-    Hello
-  }
-}
+    export default {
+        name: 'app',
+        components: {
+            TaskList,
+            Task
+        }
+    }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
