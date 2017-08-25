@@ -1,25 +1,31 @@
 <template>
-    <li class="collection-item" :class="{ 'finished' : isFinished }">
+    <li class="collection-item" :class="{ 'finished' : finished }">
         <div>
             <slot></slot>
-            <a href="#!" class="secondary-content" v-show="!isFinished" @click="finishTask">End</a>
+            <a href="#!" class="secondary-content" v-show="!finished" @click="finishTask">
+                End
+            </a>
         </div>
     </li>
 </template>
 
 <script>
     export default {
+        props: [
+            'isFinished'
+        ],
+
         data() {
             return {
-                isFinished: false
+                finished: this.isFinished
             }
         },
 
         methods: {
             finishTask() {
-                this.isFinished = true;
+                this.finished = true;
             }
-        }
+        },
     }
 </script>
 

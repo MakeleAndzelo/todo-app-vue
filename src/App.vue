@@ -3,9 +3,6 @@
         <div class="row">
             <div class="col s6 offset-s3">
                 <task-list title="My tasks">
-                    <task>Clean home</task>
-                    <task>Wash car</task>
-                    <task>Do homework</task>
                 </task-list>
             </div>
         </div>
@@ -18,9 +15,17 @@
 
     export default {
         name: 'app',
+        data() {
+            return {
+                tasks: [],
+            }
+        },
         components: {
             TaskList,
             Task
+        },
+        methods: {
+
         }
     }
 </script>
