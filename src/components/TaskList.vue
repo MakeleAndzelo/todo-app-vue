@@ -6,7 +6,7 @@
         <li class="collection-item add-task">
             <input type="text" @keyup.enter="addTask" v-model="inputTaskName" placeholder="Write your task and press enter">
         </li>
-        <task v-for="task in tasks" :isFinished="task.isFinished" :key="task.id">
+        <task v-for="task in sortedTasks" @removeTask="removeTask(task.name)" @finishTask="finishTask(task.name)" :name="task.name" :isFinished="task.isFinished" :key="task.id">
             {{ task.name }}
         </task>
     </ul>
@@ -38,11 +38,36 @@
         },
 
         methods: {
+
             addTask() {
-                this.tasks.push({name: this.inputTaskName, isFinished: false});
+                this.tasks.unshift({name: this.inputTaskName, isFinished: false});
                 this.inputTaskName = '';
+            },
+
+            finishTask(taskName) {
+                this.tasks.forEach(task => {
+                    if (task.isFinished) {
+                        return;
+                    }
+                    task.isFinished = task.name == taskName;
+                });
+            },
+
+            removeTask(taskName) {
+                this.tasks = this.tasks.filter(task => {
+                    return task.name != taskName;
+                })
             }
-        }
+
+        },
+
+        computed: {
+            sortedTasks() {
+                return this.tasks.sort((a, b) => {
+                    return a.isFinished - b.isFinished;
+                });
+            }
+        },
     }
 </script>
 

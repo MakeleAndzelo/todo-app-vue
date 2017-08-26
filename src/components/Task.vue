@@ -1,29 +1,35 @@
 <template>
-    <li class="collection-item" :class="{ 'finished' : finished }">
+    <li class="collection-item" :class="{ 'finished' : isFinished }">
         <div>
             <slot></slot>
-            <a href="#!" class="secondary-content" v-show="!finished" @click="finishTask">
-                End
-            </a>
+            <small v-show="isFinished"><i>(Finished)</i></small>
+            <div class="secondary-content">
+                <a href="#!" v-show="!isFinished" @click="finishTask">
+                    <i class="fa fa-check"></i>
+                </a>
+                <a href="#!" @click="removeTask">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </div>
         </div>
     </li>
 </template>
 
 <script>
     export default {
-        props: [
-            'isFinished'
-        ],
+        props: ['isFinished', 'name'],
 
-        data() {
-            return {
-                finished: this.isFinished
-            }
+        created() {
+            this.finished = this.isFinished;
         },
 
         methods: {
             finishTask() {
-                this.finished = true;
+                this.$emit('finishTask');
+            },
+
+            removeTask() {
+                this.$emit('removeTask');
             }
         },
     }
@@ -32,5 +38,8 @@
 <style>
     li.finished {
         text-decoration: underline;
+    }
+    .secondary-content *{
+        margin-left: 10px;
     }
 </style>

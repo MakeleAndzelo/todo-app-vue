@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 require('../node_modules/materialize-css/dist/css/materialize.min.css')
+require('../node_modules/font-awesome/css/font-awesome.min.css')
 
 Vue.config.productionTip = false
 
