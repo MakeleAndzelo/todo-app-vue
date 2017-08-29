@@ -1,0 +1,4 @@
+AppBundle\Entity\Task:
+    task_{1..100}:
+        name: <sentence()>
+        isFinished: <boolean(75)>
